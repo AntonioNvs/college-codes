@@ -84,6 +84,8 @@ class CtrGenVisitor(Visitor):
     (type0, type1) on the way. A pair like (type0, type1) indicates that these
     two type variables are the same.
 
+    (bool, int)
+
     Examples:
         >>> e = Let('v', Num(40), Let('w', Num(2), Add(Var('v'), Var('w'))))
         >>> ev = CtrGenVisitor()

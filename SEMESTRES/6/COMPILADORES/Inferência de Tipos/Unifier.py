@@ -119,6 +119,11 @@ def infer_types(expression):
         >>> type_names = infer_types(e2)
         >>> [type_names['v'], type_names['w'], type_names['y']]
         [<class 'int'>, <class 'bool'>, <class 'int'>]
+
+        >>> e = Lth(Bln(True), Num(3))
+        >>> type_names = infer_types(e)
+        >>> type_names
+        [""]
      """
     ev = CtrGenVisitor()
     constraints = list(expression.accept(ev, ev.fresh_type_var()))
