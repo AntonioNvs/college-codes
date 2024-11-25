@@ -1,0 +1,44 @@
+RELATÓRIO
+
+1. Termo de compromisso
+
+Os membros do grupo afirmam que todo o código desenvolvido para este
+trabalho é de autoria própria.  Exceto pelo material listado no item 3
+deste relatório, os membros do grupo afirmam não ter copiado
+material da Internet nem obtiveram código de terceiros.
+
+2. Membros do grupo e alocação de esforço
+
+Preencha as linhas abaixo com o nome e o e-mail dos integrantes do
+grupo.  Substitua XX pela contribuição de cada membro do grupo no
+desenvolvimento do trabalho.
+
+Antônio Caetano Neves Neto <antonioneto@dcc.ufmg.br> 50%
+João Lucas Simões Moreira <joaomoreira@dcc.ufmg.br> 50%
+
+3. Referências bibliográficas
+
+https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/chdir
+https://www.dca.ufrn.br/~adelardo/cursos/DCA409/node39.html
+https://www.dca.ufrn.br/~adelardo/cursos/DCA409/node22.html
+https://www.dca.ufrn.br/~adelardo/cursos/DCA409/node70.html
+
+4. Estruturas de dados
+
+As estruturas de dados utilizadas na solução foram as presentes no arquivo original
+do trabalho, na qual consiste em sintetizar o comando de terminal passado a partir do seu tipo,
+qual o comando e argumentos passados, dividindo em três estruturas principais: execução, 
+redirecionamento e uso do pipe.
+
+Os algoritmos se basearam em diversas primitivas. No que tange a execução de comandos, a execvp
+substitúi o processo atual por um novo processo, a partir do arquivo de execução e seus argumentos.
+
+Para o redirecionamento, a primitiva dup2 foi utilizada. Primeiramente, é aberto o arquivo antes de
+sua execução, para evitar possíveis acessos externos e redirecionar a leitura/escrita do processo a
+ser executado pelo execvp ao arquivo de interesse. Tal último fato é o que a primitiva dup2 faz. Após,
+há uma chamada recursiva para executar o comando de interesse.
+
+Em relação ao pipe, a primitiva pipe é usada para criar um canal de comunicação entre dois processos,
+na qual p[0] é utilizado para leitura e p[1] para escrita. Após isso, o processo é duplicado, no qual 
+o processo filho executa o comando a esquerda e escreve no canal de escrita o resultado para o processo
+pai possa utilizar como entrada, executando recursivamente os comandos.
